@@ -66,15 +66,18 @@ const bookMarkHandlers=(function(){
     const form=generateFormString();
     console.log(form);
     $('.new-book-section').html(form);
+
+    $('.filter-rating').html(generateFilterSelector());
     
  
   } //render function end bracket
   // This function returns strings with key value pairs inside.
   function generateHtmlString(obj){
     console.log(`generate return string ran ${JSON.stringify(obj)}`);
-    
+    const ratingFilter=obj.rating<library.filteredItem?'hide':'';
+    console.log (`RATING FILTER!!!!!${ratingFilter}`);
     if(!obj.isExpanded)
-    {return `<li class="full-bookmark" item-id="${obj.id}">
+    {return `<li class="full-bookmark ${ratingFilter}" item-id="${obj.id}">
             <span class='book-Title-Js'>${obj.title}</span>
             <span class='book-rating'>${obj.rating}Stars</span>
             <span><button type="button" class="expand-button">Expand</button></span>
@@ -95,14 +98,40 @@ const bookMarkHandlers=(function(){
                </div></li>`;
 
               
+
+              
             
          
-    }  
-                                        
+    } 
+    
+    
+
+
+
+
+
+
+                                    
             
   
   
 
+  }
+
+  
+  function generateFilterSelector(){
+    return `<form id="filter-rating-form">
+       <label for="filter-by-min">Filter By Min Stars</label>   
+      <select class='select-min-rating' name='select-rating'>
+              <option value='1' ${1===library.filteredItem?"selected":''}>1 Star</option>
+              <option value='2' ${2===library.filteredItem?"selected":''}>2 Stars</option>
+              <option value='3' ${3===library.filteredItem?"selected":''}>3 Stars</option>
+              <option value='4' ${4===library.filteredItem?"selected":''}>4 Stars</option>
+              <option value='5' ${5===library.filteredItem?"selected":''}>5 Stars</option>
+          </select>
+          <span><button type="submit" class="filter-button">Filter BookMarks</button></span>
+          </form>`;
+          $('.filter-rating').html
   }
 
   function generateFormString(){
@@ -114,11 +143,11 @@ const bookMarkHandlers=(function(){
         <span><input type="text" class='url-input' name="url-input"value='http://'required minlength="8"></span>
         <label for="Rating">Rate Your Book</label>
     <span><select class='select-rating' name='select-rating'></span>
-        <option value='1 Star'>1 Star</option>
-        <option value='2 Stars'>2 Stars</option>
-        <option value='3 Stars'>3 Stars</option>
-        <option value='4 Stars'>4 Stars</option>
-        <option value='5 Stars'>5 Stars</option>
+        <option value='1'>1 Star</option>
+        <option value='2'>2 Stars</option>
+        <option value='3'>3 Stars</option>
+        <option value='4'>4 Stars</option>
+        <option value='5'>5 Stars</option>
     </select>
     <br>
     <label for='description' name='description'>Book Description</label>
@@ -183,6 +212,18 @@ const bookMarkHandlers=(function(){
     });
   }
 
+  function handleFilterByMin(){
+    $('.filter-rating').submit(function (event){
+      event.preventDefault;
+      const minRatingValue=$('select.select-min-rating option:checked').val();
+      console.log(minRatingValue);
+      library.filteredItem=minRatingValue;
+      render();
+    });
+      
+       
+  }
+
   
 
 
@@ -198,6 +239,8 @@ const bookMarkHandlers=(function(){
     handleDeleteClickButton();
     handleExpandClick();
     collapseClick();
+    handleFilterByMin();
+    generateFilterSelector();
   };
   
 

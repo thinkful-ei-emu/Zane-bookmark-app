@@ -35,7 +35,8 @@ const library=(function(){
   
   return {
     books:[],
-    newFormClicked:false;
+    newFormClicked:false,
+    filteredItem:1,
     addNewItem,
     findById,
     findAndDelete
