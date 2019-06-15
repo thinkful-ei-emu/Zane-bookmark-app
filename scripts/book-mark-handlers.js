@@ -161,14 +161,7 @@ const bookMarkHandlers=(function(){
     }
   }
 
-  // function handleHideFormButton(){
-  //   $('body').on('click','.form-gone-button',event=>{
-  //     event.preventDefault();
-  //     $('#new-bookmark-form').toggle();
-  //     $('.new-bookmark-button').toggle();});
-    
-
-  // }
+  
   function getItemIdFromElement(item){
     console.log (item);
     console.log($(item)
@@ -213,7 +206,7 @@ const bookMarkHandlers=(function(){
   }
 
   function handleFilterByMin(){
-    $('.filter-rating').submit(function (event){
+    $('.filter-rating').on('submit','#filter-rating-form', function (event){
       event.preventDefault;
       const minRatingValue=$('select.select-min-rating option:checked').val();
       console.log(minRatingValue);
