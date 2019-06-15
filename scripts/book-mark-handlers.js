@@ -78,8 +78,8 @@ const bookMarkHandlers=(function(){
     console.log (`RATING FILTER!!!!!${ratingFilter}`);
     if(!obj.isExpanded)
     {return `<li class="full-bookmark ${ratingFilter}" item-id="${obj.id}">
-            <span class='book-Title-Js'>${obj.title}</span>
-            <span class='book-rating'>${obj.rating}Stars</span>
+            <span class='book-Title-Js'><h3>${obj.title}</h3></span><br>
+            <span class='book-rating'><strong>${obj.rating}</strong>Stars</span><br>
             <span><button type="button" class="expand-button">Expand</button></span>
             <span><button type="button" class="delete-button">Delete</button></span>`;}
     else{
@@ -89,7 +89,7 @@ const bookMarkHandlers=(function(){
               
                                           
               <div class='book-description'>
-                  <span>${obj.desc}</span><br>
+                  <span><p>${obj.desc}</p></span><br>
                   <span><a href=${obj.url}>Visit Here</a></span>
                   <span><button type="button" class="collapse-button">Collapse</button></span>
                   <span><button type="button" class="delete-button">Delete</button></span>
@@ -131,7 +131,7 @@ const bookMarkHandlers=(function(){
           </select>
           <span><button type="submit" class="filter-button">Filter BookMarks</button></span>
           </form>`;
-          $('.filter-rating').html
+          
   }
 
   function generateFormString(){
