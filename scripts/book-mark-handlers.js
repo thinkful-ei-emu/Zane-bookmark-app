@@ -78,14 +78,14 @@ const bookMarkHandlers=(function(){
     console.log (`RATING FILTER!!!!!${ratingFilter}`);
     if(!obj.isExpanded)
     {return `<li class="full-bookmark ${ratingFilter}" item-id="${obj.id}">
-            <span class='book-Title-Js'><h3>${obj.title}</h3></span><br>
-            <span class='book-rating'><strong>${obj.rating}</strong>Stars</span><br>
+            <div class="title-rating"><span class='book-Title-Js'><h3 class="fancy-title">${obj.title}</h3></span>
+            <span class='book-rating'><strong>${obj.rating}</strong>Stars</span><br></div>
             <span><button type="button" class="expand-button">Expand</button></span>
             <span><button type="button" class="delete-button">Delete</button></span>`;}
     else{
       return `<li class="full-bookmark" item-id="${obj.id}">
-              <span class='book-Title-Js'>${obj.title}</span>
-              <span class='book-rating'>${obj.rating}Stars</span>
+      <div class="title-rating"><span class='book-Title-Js'>${obj.title}</span>
+              <span class='book-rating'>${obj.rating}Stars</span></div>
               
                                           
               <div class='book-description'>
@@ -136,12 +136,12 @@ const bookMarkHandlers=(function(){
 
   function generateFormString(){
     if(library.newFormClicked){return `<form id="new-bookmark-form" name="new-bookmark-form"  class="new-bookmark-form">
-    <label for="Title">Title</label>
+    <label for="Title">Title</label><br>
     <span><input type="text" class='title-input'name='title-input' placeholder="Enter Title Here" required 
-    minlength="1"></span>
-    <label for="url-input">Insert url http://.....</label>
-        <span><input type="text" class='url-input' name="url-input"value='http://'required minlength="8"></span>
-        <label for="Rating">Rate Your Book</label>
+    minlength="1"></span><br>
+    <label for="url-input">Insert url http://.....</label><br>
+        <input type="text" class='url-input' name="url-input"value='http://'required minlength="8"><br>
+        <label for="Rating">Rate Your Book</label><br>
     <span><select class='select-rating' name='select-rating'></span>
         <option value='1'>1 Star</option>
         <option value='2'>2 Stars</option>
@@ -150,7 +150,7 @@ const bookMarkHandlers=(function(){
         <option value='5'>5 Stars</option>
     </select>
     <br>
-    <label for='description' name='description'>Book Description</label>
+    <label for='description' name='description'>Book Description</label><br>
     <input type='text' class='description-input'name='desc-input' placeholder="Enter Description of Your Book"required 
     minlength="1">
     <button type='submit' class="submit button">Submit</button>
